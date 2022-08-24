@@ -16,15 +16,16 @@ class TicTacToe:
     def get_random_first_player(self):
         return random.randint(0, 1)
 
-    def check_spot(self,row,col):
+    def check_spot(self,row,col,x,y):
         if row > 3 or col > 3:
             print('Try again')
             return False
         else:
-            if self.board[row][col] == 'O' or self.board[row][col] == 'X':
-                print('That spot is taken')
-                print(self.board)
-                return False
+            if self.board[row][col] == 'O' or self.board[row][col] == 'X' :
+                if x > 0 or y > 0:
+                    print('That spot is taken')
+                    print(self.board)
+                    return False
         return True
 
     def fix_spot(self, row, col, player):
@@ -73,10 +74,10 @@ class TicTacToe:
             return win
         return False
 
-        #for row in self.board:
-        #    for item in row:
-        #        if item == '-':
-        #            return False
+        for row in self.board:
+            for item in row:
+                if item == '-':
+                    return False
         #return True
 
     def is_board_filled(self):
@@ -113,7 +114,7 @@ class TicTacToe:
                 map(int, input("Enter row and column numbers to fix spot: ").split()))
             print()
             try:
-                if self.check_spot(row -1,col-1):
+                if self.check_spot(row -1,col-1,countO,countX):
 
             # fixing the spot
                     self.fix_spot(row - 1, col - 1, player)
