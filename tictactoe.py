@@ -73,11 +73,11 @@ class TicTacToe:
             return win
         return False
 
-        for row in self.board:
-            for item in row:
-                if item == '-':
-                    return False
-        return True
+        #for row in self.board:
+        #    for item in row:
+        #        if item == '-':
+        #            return False
+        #return True
 
     def is_board_filled(self):
         for row in self.board:
@@ -112,14 +112,15 @@ class TicTacToe:
             row, col = list(
                 map(int, input("Enter row and column numbers to fix spot: ").split()))
             print()
-            if self.check_spot(row -1,col-1):
+            try:
+                if self.check_spot(row -1,col-1):
 
             # fixing the spot
-                self.fix_spot(row - 1, col - 1, player)
-                if player =='O':countO +=1
-                if player == 'X':countX +=1
-                player = self.swap_player_turn(player,countO,countX)
-
+                    self.fix_spot(row - 1, col - 1, player)
+                    if player =='O':countO +=1
+                    if player == 'X':countX +=1
+                    player = self.swap_player_turn(player,countO,countX)
+            except: continue
 
 
             # checking whether current player is won or not
